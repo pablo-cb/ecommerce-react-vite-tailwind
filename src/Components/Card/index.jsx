@@ -1,7 +1,7 @@
 
 const Card = () => {
   return (
-    <div className="bg-white cursor-pointer w-56 h-60 rounded-lg">
+    <div className="bg-gray-100 cursor-pointer w-56 h-60 rounded-lg">
         {/* Figure contains the image, label and add button */}
         {/* Figure need to be relative because their elements are going to be positioned in an absolute position */}
         <figure className="relative mb-2 w-full h-4/5">
@@ -12,7 +12,7 @@ const Card = () => {
             </div>
         </figure>
         {/* P contains Name and Price tag */}
-        <p className="flex justify-between">
+        <p className="flex justify-between p-1 items-center">
             <span className="text-sm font-light">Headphones</span>
             <span className="text-lg font-medium">$300</span>
         </p>
