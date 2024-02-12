@@ -13,7 +13,7 @@ function Home() {
         const data = await response.json()
         setItems(data)
       } catch (error) {
-        console.error(`Oh no, an error: ${error}`);
+        console.error(`Oh no, an error: ${error}`)
       }
     }
     fetchData()
