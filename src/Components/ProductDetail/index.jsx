@@ -15,13 +15,13 @@ function ProductDetail() {
             </div>
             <div className='flex flex-col gap-2'>
                 <figure>
-                    <img src={context.productDetailDisplay.images[0]}
+                    <img src={context.productDetailDisplay.images?.[0]}
                         alt={context.productDetailDisplay.title}
                         className='rounded-lg'
-                    />
+                    /> 
                 </figure>
                 <span className="text-lg font-medium">{context.productDetailDisplay.title}</span>
-                <span className="text-md font-medium">{context.productDetailDisplay.price}</span>
+                <span className="text-md font-medium">${context.productDetailDisplay.price}</span>
                 <span className="text-sm font-light">{context.productDetailDisplay.description}</span>
             </div>
         </aside>
