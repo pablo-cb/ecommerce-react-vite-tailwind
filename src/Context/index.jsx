@@ -5,7 +5,8 @@ export const ShoppingCartContext = createContext();
 export const ShoppingCartProvider = ({children}) => {
 
     // Shopping Cart Product Amount
-    const [count, setCount]  = useState(0);
+    // const [count, setCount]  = useState(0);
+    const count = () => cartProducts.reduce((sum, item) => sum + item.amount, 0);
 
     // ProductDetail open/close
     const [isProductDetailOpen, setProductDetail] = useState(false);
@@ -15,19 +16,24 @@ export const ShoppingCartProvider = ({children}) => {
     // Product Detail - Product to show
     const [productDetailDisplay, setProductDetailDisplay] = useState({});
 
+    // Product Added in the shopping cart
+    const [cartProducts, setCartProducts] = useState([]);
+
     // Shopping Cart open/close
     const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
     const openShoppingCart = () => {setIsShoppingCartOpen(true)}
     const closeShoppingCart = () => {setIsShoppingCartOpen(false)}
 
-    // Product Added in the shopping cart
-    const [cartProducts, setCartProducts] = useState([]);
+    // Calculates the total price of the array
+    const totalToPay = (arr) => arr.reduce((sum, item) => sum + item.price*item.amount, 0);
 
+    // My Orders
+
+    const [myOrders, setMyOrders] = useState([]);
 
     return (
         <ShoppingCartContext.Provider value={{
             count,
-            setCount,
             isProductDetailOpen,
             setProductDetail,
             openProductDetail,
@@ -39,7 +45,10 @@ export const ShoppingCartProvider = ({children}) => {
             openShoppingCart,
             closeShoppingCart,
             cartProducts,
-            setCartProducts
+            setCartProducts,
+            totalToPay,
+            myOrders,
+            setMyOrders
         }}>
             {children}
         </ShoppingCartContext.Provider>

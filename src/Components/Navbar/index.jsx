@@ -125,7 +125,7 @@ const navbar = () => {
             >
                 <ShoppingCartIcon className='h-6 w-6'></ShoppingCartIcon>
                 <span>
-                    {context.count}
+                    {context.count()}
                 </span>
             </li>
         </ul>

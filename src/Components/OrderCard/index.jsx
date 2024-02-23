@@ -2,14 +2,13 @@ import { useContext } from "react"
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import { ShoppingCartContext } from "../../Context"
 
-const ItemsShoppingCart = (props) => {
-  const { id, title, imageUrl, price, amount } = props;
+const OrderCard = (props) => {
+  const { id, title, imageUrl, price, amount, handleDelete } = props;
   const context = useContext(ShoppingCartContext);
 
 
+  // if the product amount is more than 1, reduces the number, else, remove the product from the shopping Cart
   const removeItemById = (id) => {
-
-    // if the product amount is more than 1, reduces the number, else, remove the product from the shopping Cart
     const updatedCartProducts = context.cartProducts.map(item => {
       if (item.id === id) {
         if (item.amount > 1) {
@@ -24,6 +23,15 @@ const ItemsShoppingCart = (props) => {
     context.setCartProducts(updatedCartProducts);
   };
 
+  // Toggle the X icon in order to able/disable the delete action
+  let renderXMarkIcon
+  if (handleDelete) {
+    renderXMarkIcon = <XMarkIcon
+      onClick={()=>removeItemById(id)}
+      className='h-6 w-6 text-black cursor-pointer'
+    ></XMarkIcon>
+  }
+
   return (
     <div className="flex justify-between items-center mb-3">
       <div className='flex items-center gap-2'>
@@ -35,13 +43,10 @@ const ItemsShoppingCart = (props) => {
       <div className='flex items-center gap-2'>
         <p className='text-lg font-large'>(x{amount})</p>
         <p className='text-lg font-medium'>{price}</p>
-        <XMarkIcon
-          onClick={()=>removeItemById(id)}
-          className='h-6 w-6 text-black cursor-pointer'
-        ></XMarkIcon>
+        {renderXMarkIcon}
       </div>
     </div>
   )
 }
 
-export default ItemsShoppingCart
+export default OrderCard

@@ -11,7 +11,7 @@ const Card = (data) => {
     //stopProgration helps to avoid that the product detail opens up when the user clicks the plus icon
     event.stopPropagation()
     context.openShoppingCart()
-    context.setCount(context.count + 1);
+    // context.setCount(context.count + 1);
 
     // Looking if the product already exists in the Shopping Cart
 
