@@ -9,9 +9,11 @@ const OrderCard = (props) => {
 
   // if the product amount is more than 1, reduces the number, else, remove the product from the shopping Cart
   const removeItemById = (id) => {
+    
     const updatedCartProducts = context.cartProducts.map(item => {
       if (item.id === id) {
         if (item.amount > 1) {
+          // Reduces the amount in 1
           return { ...item, amount: item.amount - 1 };
         } else {
           return null;

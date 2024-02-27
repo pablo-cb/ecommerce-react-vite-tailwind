@@ -10,12 +10,19 @@ function ShoppingCart() {
     const context = useContext(ShoppingCartContext);
     
     const myOrdersCheckout = () => {
+
+        //Calculate the amount of products when the user does the checkout
+        const keyToSum = 'amount';
+        const sumProducts = context.cartProducts.reduce((accumulator, currentValue) => {
+            return accumulator + currentValue[keyToSum];
+          }, 0);
+
         const orderToAdd = {
             date: '01.02.23',
             products: context.cartProducts,
-            totalProducts: context.cartProducts.length,
+            totalProducts: sumProducts,
             totalPrice: context.totalToPay(context.cartProducts)
-          }
+        }
         context.setMyOrders([...context.myOrders, orderToAdd])
         context.setCartProducts([]);
         context.closeShoppingCart();
@@ -31,13 +38,13 @@ function ShoppingCart() {
                 {
                     context.cartProducts.map(product => (
                         <OrderCard
-                        key={product.id}
-                        id={product.id}
-                        title={product.title}
-                        imageUrl={product.images}
-                        price={product.price}
-                        amount={product.amount}
-                        handleDelete={true}
+                            key={product.id}
+                            id={product.id}
+                            title={product.title}
+                            imageUrl={product.images}
+                            price={product.price}
+                            amount={product.amount}
+                            handleDelete={true}
                         />
                     ))
                 }
@@ -47,7 +54,7 @@ function ShoppingCart() {
                     <span>Total</span>
                     <span className='text-lg font-bold'>${context.totalToPay(context.cartProducts)}</span>
                 </div>
-                <Link to="/my-order">                
+                <Link to="/my-orders/last">                
                     <button
                         onClick={myOrdersCheckout}
                         className='w-full bg-black rounded-md text-white p-2'
