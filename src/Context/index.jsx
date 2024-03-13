@@ -6,7 +6,6 @@ export const ShoppingCartContext = createContext();
 export const ShoppingCartProvider = ({children}) => {
 
     // Shopping Cart Product Amount
-    // const [count, setCount]  = useState(0);
     const count = () => cartProducts.reduce((sum, item) => sum + item.amount, 0);
 
     // ProductDetail open/close
@@ -50,6 +49,7 @@ export const ShoppingCartProvider = ({children}) => {
     // Filtered Products
     const [searchByAny, setSearchByAny] = useState('');
 
+    // The following functiong look into an array(arr), on a key, a specific keyword
     const searchByAnyInArray = (arr, key, keyword) => {
         if (keyword !== ''){
             if (key == 'title'){
